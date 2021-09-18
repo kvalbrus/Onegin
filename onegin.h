@@ -3,4 +3,6 @@
 
 const char* FILENAME = "Onegin.txt";
 
+char* readingLines(FILE *);
+
 #endif //ONEGIN_ONEGIN_H
