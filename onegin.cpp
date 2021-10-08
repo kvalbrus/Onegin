@@ -147,7 +147,6 @@ char ** SortsStringsAlphavit(char ** ukazatel, int lines)
             for(int h = 0; h < Strlen(*(ukazatel + h)); h++)
             {
                 puts("[5.1.4+]");//
-                printf("%c\n", *(*(ukazatel + 1) + 4));//
 
                 if(*(*(ukazatel + j) + h) != *(*(ukazatel + j + 1) + h))
                 {
@@ -156,14 +155,26 @@ char ** SortsStringsAlphavit(char ** ukazatel, int lines)
                     if(*(*(ukazatel + j) + h) > *(*(ukazatel + j + 1) + h))
                     {
                         puts("[5.1.6]");//
-                        
                         char * a = *(ukazatel + j);
                         *(ukazatel + j) = *(ukazatel + (j + 1));
                         *(ukazatel + (j + 1)) = a;
+
                     }
+
+                    break;
                 }
             }
         }
+
+        puts("---------------------");//
+
+        for(int x = 0; x < lines; x++)//
+        {
+            
+            printf("%s\n", *(ukazatel + x));
+            
+        }
+        puts("---------------------");//
     }   
 
     return ukazatel;
