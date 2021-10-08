@@ -5,14 +5,28 @@
 #include <cstring>
 #include <cstdlib>
 
-int ReadingLines(FILE * file);
+enum StatusFile
+{
+    CORRECTFILE,
+    NULLFILE
+};
 
-int CheckingArguments(int argc, char* argv[]);
+char ** ReadsLines(FILE * file, int * NumberOfLines);
 
-int CheckingNullFile(FILE * file);
+void ChecksArguments(int argc, char * argv[]);
 
-char ** SortsRows(char ** ukazatel, int lines);
+void PrintsLines(char ** ArrayOfLines, int NumberOfLines, FILE * PutputFile);
 
-size_t Strlen(const char* str);
+void ChecksFile(FILE * file);
+
+void SortsRowsBegin(char ** ArrayOfLines, int NumberOfLines);
+
+void SortsRowsEnd(char ** ArrayOfLines, int NumberOfLines);
+
+void ChecksPointer(char ** pointer);
+
+void ChecksPointer(void * pointer);
+
+//size_t Strlen(const char* str);
 
 #endif //ONEGIN_ONEGIN_H
