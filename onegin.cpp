@@ -74,12 +74,7 @@ int ReadingLines(FILE * file)
 
     printf("%d\n", chetchik);
     puts("[5]");//
-    for(int i = 0; i < chetchik; i++)
-    {
-        printf("%p\n", (ukazatel + i));
-
-    }
-
+   
     for(int i = 0; i < chetchik; i++)
     {
         puts("[5.0.1]");
@@ -135,11 +130,11 @@ char ** SortsStringsAlphavit(char ** ukazatel, int lines)
     Strlen(*(ukazatel + 0 * sizeof(char)));
     puts("[5.1.3]");//
 
-    printf("%s\n", *ukazatel);
+   // printf("%s\n", *ukazatel);
 
     for(int i = 0; i < lines; i++)
     {
-        printf("%s\n", *(ukazatel + i));
+        printf("%s\n", *(ukazatel + i));//
     }
 
     for(int i = lines; i > 0; i--)
@@ -148,19 +143,23 @@ char ** SortsStringsAlphavit(char ** ukazatel, int lines)
         for(int j = 0; j < i - 1; j++)
         {
             puts("[5.1.3.2]");//
-            for(int h = 0; h < Strlen(*(ukazatel + (h * sizeof(char *)))); h++)
+
+            for(int h = 0; h < Strlen(*(ukazatel + h)); h++)
             {
                 puts("[5.1.4+]");//
-                printf("%c\n", *(*(ukazatel + 1) + 1));
+                printf("%c\n", *(*(ukazatel + 1) + 4));//
+
                 if(*(*(ukazatel + j) + h) != *(*(ukazatel + j + 1) + h))
                 {
                     puts("[5.1.5]");//
-                    if(**(ukazatel + (j * sizeof(char *)) + h) > **(ukazatel + ((j + 1) * sizeof(char *)) + h))
+
+                    if(*(*(ukazatel + j) + h) > *(*(ukazatel + j + 1) + h))
                     {
                         puts("[5.1.6]");//
-                        char * a = *(ukazatel + (j * sizeof(char *)));
-                        *(ukazatel + (j * sizeof(char *))) = *(ukazatel + ((j + 1) * sizeof(char *)));
-                        *(ukazatel + ((j + 1) * sizeof(char *))) = a;
+                        
+                        char * a = *(ukazatel + j);
+                        *(ukazatel + j) = *(ukazatel + (j + 1));
+                        *(ukazatel + (j + 1)) = a;
                     }
                 }
             }
