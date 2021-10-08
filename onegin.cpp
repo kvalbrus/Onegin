@@ -34,14 +34,18 @@ int ReadingLines(FILE * file)
     
     for(long long i = 0; i < size; i++)
     {
-        if(*(symbols + i) == '\n') chetchik++;
+        if(*(symbols + i) == '\n') 
+        {
+            *(symbols + i) = '\0';
+            chetchik++;
+        }
 
     }
 
     puts("[3]");
     char ** ukazatel = (char **) calloc(chetchik, sizeof(char *));
     char ** ab = (char **) calloc(chetchik, sizeof(char *));
-    ukazatel[0] = symbols;
+    //*(ukazatel + 0) = symbols;
 
     puts("[4]");//
 
@@ -51,14 +55,17 @@ int ReadingLines(FILE * file)
         puts("[4.1]");
         if (i == 0) 
         {
-            ukazatel[i] = symbols;
-            continue;
+            *(ukazatel + i) = symbols;
+            
+            //continue;
         }
         else
         {
-            j = strchr(symbols + p, '\n');
-            ukazatel[i] = j + 1;
+            j = strchr(symbols + p, '\0');
+            *(ukazatel + i) = j + 1;
             *j = '\0';
+
+            p = j - symbols + 1;
         }
 
       //  ukazatel[uk] = (1 + strchr(symbols + i, '\n'));
@@ -67,11 +74,16 @@ int ReadingLines(FILE * file)
 
     printf("%d\n", chetchik);
     puts("[5]");//
+    for(int i = 0; i < chetchik; i++)
+    {
+        printf("%p\n", (ukazatel + i));
+
+    }
 
     for(int i = 0; i < chetchik; i++)
     {
         puts("[5.0.1]");
-        printf("%s\n", ukazatel[i]);
+        printf("%s\n", *(ukazatel + i));
 
     }
     puts("[5.1]");//
@@ -81,7 +93,7 @@ int ReadingLines(FILE * file)
     puts("[6]");//
     for(int i = 0; i < chetchik; i++)
     {
-        printf("%s\n", ukazatel[i]);
+        printf("%s\n", *(ukazatel + i));
     }
    
     return 0;
