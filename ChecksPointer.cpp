@@ -1,6 +1,6 @@
 #include "onegin.h"
 
-void ChecksPointer(char ** pointer)
+void ChecksPointer(struct Lines * pointer)
 {
     if (!pointer)
     {

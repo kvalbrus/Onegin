@@ -1,6 +1,6 @@
 #include "onegin.h"
 
-char ** ReadsLines(FILE * file, int *NumberOfLines)
+struct Lines * ReadsLines(FILE * file, int * NumberOfLines)
 {
     ChecksPointer(NumberOfLines);
     
@@ -15,7 +15,7 @@ char ** ReadsLines(FILE * file, int *NumberOfLines)
     
     for(long long symbol = 0; symbol < size; symbol++)
     {
-        if(*(buffer + symbol) == '\n') 
+        if(*(buffer + symbol) == '\n')
         {
             *(buffer + symbol) = '\0';
             *NumberOfLines = *NumberOfLines + 1;
@@ -23,22 +23,24 @@ char ** ReadsLines(FILE * file, int *NumberOfLines)
 
     }
 
-    char ** ArrayOfLines = (char **) calloc(*NumberOfLines, sizeof(char *));
+    //char ** ArrayOfLines = (char **) calloc(*NumberOfLines, sizeof(char *));
+    printf("123\n");
+    struct Lines * ArrayOfLines = (struct Lines *) calloc(*NumberOfLines, sizeof(struct Lines *));
 
-    for(int line = 0, p = 0; line < *NumberOfLines; line++)
+    for(int string = 0, symbols = 0, SizeString = 0, p = 0; string < *NumberOfLines; string++)
     {
-        if (line == 0) 
-        {
-            *(ArrayOfLines + line) = buffer;
-        }
-        else
-        {
-            *(ArrayOfLines + line) = strchr(buffer + p, '\0') + 1;
-            *(strchr(buffer + p, '\0')) = '\0';
+        for(;!(*(buffer + symbols) == '\0' || *(buffer + symbols) == '\n'); SizeString++, symbols++) {}
 
-            p = strchr(buffer + p, '\0') - buffer + 1;
-        }
+        (ArrayOfLines + string) -> line = (buffer + symbols - SizeString);
+        (ArrayOfLines + string) -> size = SizeString;
+
+        symbols++;            
+        SizeString = 0;
+
+        //printf("%2d %p %s\n", string, (ArrayOfLines + string) -> line, (ArrayOfLines + string) -> line);
+        
+        
     }
-   
+
     return ArrayOfLines;
 }

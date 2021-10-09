@@ -5,6 +5,13 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <ctype.h>
+
+struct Lines
+{
+    char * line;
+    int size;
+};
 
 enum StatusFile
 {
@@ -12,17 +19,17 @@ enum StatusFile
     NULLFILE
 };
 
-char ** ReadsLines(FILE * file, int * NumberOfLines);
+struct Lines * ReadsLines(FILE * file, int * NumberOfLines);
 
 void ChecksArguments(int argc, char * argv[]);
 
-void PrintsLines(char ** ArrayOfLines, int NumberOfLines, FILE * PutputFile);
+void PrintsLines(struct Lines * ArrayOfLines, int NumberOfLines, FILE * PutputFile);
 
 void ChecksFile(FILE * file);
 
-void SortsRowsBegin(char ** ArrayOfLines, int NumberOfLines);
+void SortsRowsBegin(struct Lines * ArrayOfLines, int NumberOfLines);
 
-void SortsRowsEnd(char ** ArrayOfLines, int NumberOfLines);
+void SortsRowsEnd(struct Lines * ArrayOfLines, int NumberOfLines);
 
 void ChecksPointer(char ** pointer);
 

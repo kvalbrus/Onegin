@@ -1,6 +1,6 @@
 #include "onegin.h"
 
-void SortsRowsEnd(char ** ArrayOfLines, int NumberOfLines)
+void SortsRowsEnd(struct Lines * ArrayOfLines, int NumberOfLines)
 {
     ChecksPointer(ArrayOfLines);
 
@@ -8,15 +8,35 @@ void SortsRowsEnd(char ** ArrayOfLines, int NumberOfLines)
     {
         for(int SecondLine = 0; SecondLine < FirstLine - 1; SecondLine++)
         {
-            for(int FirstSymbol = strlen(*(ArrayOfLines + SecondLine)), SecondSymbol = strlen(*(ArrayOfLines + SecondLine + 1)); min(FirstSymbol, SecondSymbol) > 0; FirstSymbol--, SecondSymbol--)
+            for(int SymbolFirstLine = (ArrayOfLines + SecondLine) -> size, SymbolSecondLine = (ArrayOfLines + SecondLine + 1) -> size; 
+                    SymbolFirstLine > 0 && SymbolSecondLine > 0; SymbolFirstLine--, SymbolSecondLine--)
             {
-                
-            }
+                if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) != *((ArrayOfLines + SecondLine + 1) -> line + SymbolSecondLine))
+                {
+                    if(SymbolFirstLine == (ArrayOfLines + SecondLine) -> size - 1 && ispunct(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine)))
+                    {
+                        SymbolFirstLine--;
+                    }
+
+                    if(SymbolSecondLine == (ArrayOfLines + (SecondLine + 1)) -> size - 1 && ispunct(*((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine)))
+                    {
+                        SymbolSecondLine--;
+                    }
+
+                    if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) > *((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine))
+                    {
+                        struct Lines TempoparyPointer = *(ArrayOfLines + SecondLine);
+
+                        *(ArrayOfLines + SecondLine) = *(ArrayOfLines + (SecondLine + 1));
+                        *(ArrayOfLines + (SecondLine + 1)) = TempoparyPointer;
+                    }
+
+                    break;
+                }
+            }        
         }
     }
 }
-
-
 
 
 

@@ -1,13 +1,15 @@
 #include "onegin.h"
 
-void PrintsLines(char ** ArrayOfLines, int NumberOfLines, FILE * OutputFile)
+void PrintsLines(struct Lines * ArrayOfLines, int NumberOfLines, FILE * OutputFile)
 {
+    puts("12");
     ChecksPointer(ArrayOfLines);
+    puts("23");
     ChecksFile(OutputFile);
-
+    
     fputs("\n", OutputFile);
-    for(int line = 0; line < NumberOfLines; line++)
+    for(int string = 0; string < NumberOfLines; string++)
     {
-        fprintf(OutputFile, "%s\n", *(ArrayOfLines + line));
+        fprintf(OutputFile, "%s\n", ((ArrayOfLines + string) -> line));
     }
 }
