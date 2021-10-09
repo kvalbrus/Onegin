@@ -1,8 +1,8 @@
 #include "onegin.h"
 
-void ChecksFile(FILE * file)
+void ChecksFile(FILE * File)
 {
-    if (file == NULL)
+    if (File == NULL)
     {
         printf("File not found!\n");
         exit(EXIT_SUCCESS);

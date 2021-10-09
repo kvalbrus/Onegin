@@ -1,17 +1,17 @@
 #include "onegin.h"
 
-void ChecksPointer(struct Lines * pointer)
+void ChecksPointer(struct Lines * Pointer)
 {
-    if (!pointer)
+    if (!Pointer)
     {
         printf("Pointer is NULL!\n");
         exit(EXIT_FAILURE);
     }
 }
 
-void ChecksPointer(void * pointer)
+void ChecksPointer(void * Pointer)
 {
-    if (!pointer)
+    if (!Pointer)
     {
         printf("Pointer is NULL!\n");
         exit(EXIT_FAILURE);

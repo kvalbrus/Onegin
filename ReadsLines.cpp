@@ -1,38 +1,37 @@
 #include "onegin.h"
 
-struct Lines * ReadsLines(FILE * file, int * NumberOfLines)
+struct Lines * ReadsLines(FILE * File, int * NumberOfLines)
 {
     ChecksPointer(NumberOfLines);
     
-    fseek(file, 0, SEEK_END);
-    long long size = ftell(file);
-    rewind(file);
+    fseek(File, 0, SEEK_END);
+    long long Size = ftell(File);
+    rewind(File);
 
-    char * Buffer = (char *) calloc(size, sizeof(char));
-    fread(Buffer, sizeof(char), size, file);
+    char * Buffer = (char *) calloc(Size, sizeof(char));
+    fread(Buffer, sizeof(char), Size, File);
 
     *NumberOfLines = 1;
     
-    for(long long symbol = 0; symbol < size; symbol++)
+    for(long long Symbol = 0; Symbol < Size; Symbol++)
     {
-        if(*(Buffer + symbol) == '\n')
+        if(*(Buffer + Symbol) == '\n')
         {
-            *(Buffer + symbol) = '\0';
+            *(Buffer + Symbol) = '\0';
             *NumberOfLines = *NumberOfLines + 1;
         }
-
     }
 
     struct Lines * ArrayOfLines = (struct Lines *) calloc(*NumberOfLines, sizeof(struct Lines *));
 
-    for(int string = 0, symbols = 0, SizeString = 0, p = 0; string < *NumberOfLines; string++)
+    for(int String = 0, Symbols = 0, SizeString = 0; String < *NumberOfLines; String++)
     {
-        for(;!(*(Buffer + symbols) == '\0' || *(Buffer + symbols) == '\n'); SizeString++, symbols++) {}
+        for(;!(*(Buffer + Symbols) == '\0' || *(Buffer + Symbols) == '\n'); SizeString++, Symbols++) {}
 
-        (ArrayOfLines + string) -> line = (Buffer + symbols - SizeString);
-        (ArrayOfLines + string) -> size = SizeString;
+        (ArrayOfLines + String) -> line = (Buffer + Symbols - SizeString);
+        (ArrayOfLines + String) -> size = SizeString;
 
-        symbols++;            
+        Symbols++;            
         SizeString = 0;
     }
 

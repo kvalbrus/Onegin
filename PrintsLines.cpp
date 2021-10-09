@@ -5,8 +5,8 @@ void PrintsLines(struct Lines * ArrayOfLines, int NumberOfLines, FILE * OutputFi
     ChecksPointer(ArrayOfLines);
     ChecksFile(OutputFile);
     
-    for(int string = 0; string < NumberOfLines; string++)
+    for(int String = 0; String < NumberOfLines; String++)
     {
-        fprintf(OutputFile, "%s\n", ((ArrayOfLines + string) -> line));
+        fprintf(OutputFile, "%s\n", ((ArrayOfLines + String) -> line));
     }
 }
