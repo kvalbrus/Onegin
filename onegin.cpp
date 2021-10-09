@@ -11,13 +11,19 @@ int main(int argc, char* argv[])
     ChecksFile(OutputFile);
 
     int NumberOfLines = 0;
-    char ** ArrayOfLines = ReadsLines(InputFile, &NumberOfLines);
-    
+
+    char ** ArrayOfLinesNoChanges = ReadsLines(InputFile, &NumberOfLines);
+    char ** ArrayOfLinesSortsBegin = ReadsLines(InputFile, &NumberOfLines);
+    char ** ArrayOfLinesSortsEnd = ReadsLines(InputFile, &NumberOfLines);
+
     fclose(InputFile);
 
-    SortsRowsBegin(ArrayOfLines, NumberOfLines);
+    SortsRowsBegin(ArrayOfLinesSortsBegin, NumberOfLines);
+    SortsRowsEnd(ArrayOfLinesSortsEnd, NumberOfLines);
 
-    PrintsLines(ArrayOfLines, NumberOfLines, OutputFile);
+    PrintsLines(ArrayOfLinesSortsBegin, NumberOfLines, OutputFile);
+    PrintsLines(ArrayOfLinesSortsEnd, NumberOfLines, OutputFile);
+    PrintsLines(ArrayOfLinesNoChanges, NumberOfLines, OutputFile);
 
     fclose(OutputFile);
 

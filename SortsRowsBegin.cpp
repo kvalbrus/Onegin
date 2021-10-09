@@ -4,22 +4,22 @@ void SortsRowsBegin(char ** ArrayOfLines, int NumberOfLines)
 {
     ChecksPointer(ArrayOfLines);
 
-    for(int i = NumberOfLines; i > 0; i--)
+    for(int FirstLine = NumberOfLines; FirstLine > 0; FirstLine--)
     {
-        for(int j = 0; j < i - 1; j++)
+        for(int SecondLine = 0; SecondLine < FirstLine - 1; SecondLine++)
         {
 
-            for(int h = 0; h < strlen(*(ArrayOfLines + h)); h++)
+            for(int symbol = 0; symbol < strlen(*(ArrayOfLines + symbol)); symbol++)
             {
 
-                if(*(*(ArrayOfLines + j) + h) != *(*(ArrayOfLines + (j + 1)) + h))
+                if(*(*(ArrayOfLines + SecondLine) + symbol) != *(*(ArrayOfLines + (SecondLine + 1)) + symbol))
                 {
 
-                    if(*(*(ArrayOfLines + j) + h) > *(*(ArrayOfLines + (j + 1)) + h))
+                    if(*(*(ArrayOfLines + SecondLine) + symbol) > *(*(ArrayOfLines + (SecondLine + 1)) + symbol))
                     {
-                        char * a = *(ArrayOfLines + j);
-                        *(ArrayOfLines + j) = *(ArrayOfLines + (j + 1));
-                        *(ArrayOfLines + (j + 1)) = a;
+                        char * TempoparyPointer = *(ArrayOfLines + SecondLine);
+                        *(ArrayOfLines + SecondLine) = *(ArrayOfLines + (SecondLine + 1));
+                        *(ArrayOfLines + (SecondLine + 1)) = TempoparyPointer;
 
                     }
 

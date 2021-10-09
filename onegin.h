@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <cmath>
 
 enum StatusFile
 {
@@ -26,6 +27,8 @@ void SortsRowsEnd(char ** ArrayOfLines, int NumberOfLines);
 void ChecksPointer(char ** pointer);
 
 void ChecksPointer(void * pointer);
+
+int min(int a, int b);
 
 //size_t Strlen(const char* str);
 
