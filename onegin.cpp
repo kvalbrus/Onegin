@@ -12,30 +12,20 @@ int main(int argc, char* argv[])
 
     int NumberOfLines = 0;
 
-    struct Lines * ArrayOfLinesNoChange = ReadsLines(InputFile, &NumberOfLines);
-    puts("[1]");
-    struct Lines * ArrayOfLinesSortsBegin = ArrayOfLinesNoChange;
-    puts("[2]");
-    struct Lines * ArrayOfLinesSortsEnd = ArrayOfLinesNoChange;
-    puts("[3]");
-   // char ** ArrayOfLinesNoChanges = ReadsLines(InputFile, &NumberOfLines);
-   // char ** ArrayOfLinesSortsBegin = ReadsLines(InputFile, &NumberOfLines);
-   // char ** ArrayOfLinesSortsEnd = ReadsLines(InputFile, &NumberOfLines);
+    struct Lines * ArrayOfLines = ReadsLines(InputFile, &NumberOfLines);
 
-    puts("[4]");
     fclose(InputFile);
 
-    puts("[5]");
-    SortsRowsBegin(ArrayOfLinesSortsBegin, NumberOfLines);
-    SortsRowsEnd(ArrayOfLinesSortsEnd, NumberOfLines);
-    
-    puts("[6]");
-    PrintsLines(ArrayOfLinesSortsBegin, NumberOfLines, OutputFile);
+    PrintsLines(ArrayOfLines, NumberOfLines, OutputFile);
     fprintf(OutputFile, "-------------------------------------\n");
-    PrintsLines(ArrayOfLinesSortsEnd, NumberOfLines, OutputFile);
-    fprintf(OutputFile, "-------------------------------------\n");
-    PrintsLines(ArrayOfLinesNoChange, NumberOfLines, OutputFile);
 
+    SortsRowsBegin(ArrayOfLines, NumberOfLines);
+    PrintsLines(ArrayOfLines, NumberOfLines, OutputFile);
+    fprintf(OutputFile, "-------------------------------------\n");
+    
+    SortsRowsEnd(ArrayOfLines, NumberOfLines);
+    PrintsLines(ArrayOfLines, NumberOfLines, OutputFile);
+      
     fclose(OutputFile);
 
     return 0;

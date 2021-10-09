@@ -23,7 +23,7 @@ struct Lines * ReadsLines(FILE * file, int * NumberOfLines);
 
 void ChecksArguments(int argc, char * argv[]);
 
-void PrintsLines(struct Lines * ArrayOfLines, int NumberOfLines, FILE * PutputFile);
+void PrintsLines(struct Lines * ArrayOfLines, int NumberOfLines, FILE * OutputFile);
 
 void ChecksFile(FILE * file);
 
@@ -34,9 +34,5 @@ void SortsRowsEnd(struct Lines * ArrayOfLines, int NumberOfLines);
 void ChecksPointer(char ** pointer);
 
 void ChecksPointer(void * pointer);
-
-int min(int a, int b);
-
-//size_t Strlen(const char* str);
 
 #endif //ONEGIN_ONEGIN_H
