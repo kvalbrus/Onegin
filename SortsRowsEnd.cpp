@@ -11,18 +11,17 @@ void SortsRowsEnd(struct Lines * ArrayOfLines, int NumberOfLines)
             for(int SymbolFirstLine = (ArrayOfLines + SecondLine) -> size, SymbolSecondLine = (ArrayOfLines + SecondLine + 1) -> size; 
                     SymbolFirstLine > 0 && SymbolSecondLine > 0; SymbolFirstLine--, SymbolSecondLine--)
             {
+                while(IsPunct(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine)))
+                {
+                    SymbolFirstLine--;
+                }
+
+                while(IsPunct(*((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine)))
+                {
+                    SymbolSecondLine--;
+                }
                 if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) != *((ArrayOfLines + SecondLine + 1) -> line + SymbolSecondLine))
                 {
-                    if(SymbolFirstLine == (ArrayOfLines + SecondLine) -> size - 1 && ispunct(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine)))
-                    {
-                        SymbolFirstLine--;
-                    }
-
-                    if(SymbolSecondLine == (ArrayOfLines + (SecondLine + 1)) -> size - 1 && ispunct(*((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine)))
-                    {
-                        SymbolSecondLine--;
-                    }
-
                     if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) > *((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine))
                     {
                         struct Lines TempoparyPointer = *(ArrayOfLines + SecondLine);
@@ -36,6 +35,48 @@ void SortsRowsEnd(struct Lines * ArrayOfLines, int NumberOfLines)
             }        
         }
     }
+}
+
+bool IsPunct(char Symbol)
+{
+    if (Symbol == '-' ||
+        Symbol == '.' ||
+        Symbol == ',' ||
+        Symbol == ':' ||
+        Symbol == ';' ||
+        Symbol == '\''||
+        Symbol == '`' ||
+        Symbol == '>' ||
+        Symbol == '<' ||
+        Symbol == '_' ||
+        Symbol == '\\'||
+        Symbol == '(' ||
+        Symbol == ')' ||
+        Symbol == '"' ||
+        Symbol == '~' ||
+        Symbol == '!' ||
+        Symbol == '?' ||
+        Symbol == '+' ||
+        Symbol == '=' ||
+        Symbol == '-' ||
+        Symbol == '[' ||
+        Symbol == ']' ||
+        Symbol == '{' ||
+        Symbol == '}' ||
+        Symbol == '#' ||
+        Symbol == '^' ||
+        Symbol == '&' ||
+        Symbol == '*' ||
+        Symbol == '%' ||
+        Symbol == '@' ||
+        Symbol == '|' ||
+        Symbol == '/' ||
+        Symbol == ' ')
+    {
+        return true;
+    }
+
+    return false;    
 }
 
 

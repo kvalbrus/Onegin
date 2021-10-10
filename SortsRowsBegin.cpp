@@ -8,18 +8,30 @@ void SortsRowsBegin(struct Lines * ArrayOfLines, int NumberOfLines)
     {
         for(int SecondLine = 0; SecondLine < FirstLine - 1; SecondLine++)
         {
-            for(int Symbol = 0; Symbol < (ArrayOfLines + SecondLine) -> size; Symbol++)
+            for(int SymbolFirstLine = 0, SymbolSecondLine = 0; 
+                SymbolFirstLine < (ArrayOfLines + SecondLine) -> size && SymbolSecondLine < (ArrayOfLines + (SecondLine + 1)) -> size;
+                SymbolFirstLine++, SymbolSecondLine++)
             {
-                if(*((ArrayOfLines + SecondLine) -> line + Symbol) != *((ArrayOfLines + (SecondLine + 1)) -> line + Symbol))
+                while(IsPunct(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine)))
                 {
-                    if(*((ArrayOfLines + SecondLine) -> line + Symbol) > *((ArrayOfLines + (SecondLine + 1)) -> line + Symbol))
+                    SymbolFirstLine++;
+                }
+
+                while(IsPunct(*((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine)))
+                {
+                    SymbolSecondLine++;
+                }
+
+                if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) != *((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine))
+                {
+                    if(*((ArrayOfLines + SecondLine) -> line + SymbolFirstLine) > *((ArrayOfLines + (SecondLine + 1)) -> line + SymbolSecondLine))
                     {
                         struct Lines TempoparyPointer = *(ArrayOfLines + SecondLine);
                         
                         *(ArrayOfLines + SecondLine) = *(ArrayOfLines + (SecondLine + 1));
                         *(ArrayOfLines + (SecondLine + 1)) = TempoparyPointer;
                     }
-
+                    
                     break;
                 }
             }

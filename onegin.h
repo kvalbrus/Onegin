@@ -68,4 +68,11 @@ Checks the pointer so that it is not null
 */
 void ChecksPointer(void * Pointer);
 
+/*!
+Checks whether the punctuation character is
+\param[in] Symbol Input character to check
+/return True, if the symbol is punctuation. False otherwise
+*/
+bool IsPunct(char Symbol);
+
 #endif //ONEGIN_ONEGIN_H
